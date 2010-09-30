@@ -1,0 +1,12 @@
+<h4>Clients</h4>
+<ul>
+  {% for client in clients %}
+  <li>{{client.name}} : {{client.client_id}} : {{client.client_secret}} : {{client.redirect_uri}}
+  {% endfor %}
+</ul>
+<strong>Create Client</strong>
+<form method="post">
+  Name: <input type="text" name="name" /><br />
+  Redirect URI: <input type="text" name="redirect_uri" /><br />
+  <input type="submit" value="Save" />
+</form>

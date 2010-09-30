@@ -1,0 +1,11 @@
+<form method="post">
+Do you wish to allow the service named '{{client.name}}' to access this application on your behalf?
+<input type="submit" value="Yes" name="authorize" />
+<input type="submit" value="No" name="authorize" />
+
+<input type="hidden" name="client_id" id="client_id" value="{{client_id}}" />
+<input type="hidden" name="redirect_uri" id="redirect_uri" value="{{redirect_uri}}" />
+<input type="hidden" name="response_type" id="response_type" value="{{response_type}}" />
+<input type="hidden" name="state" id="state" value="{{state}}" />
+<input type="hidden" name="scope" id="scope" value="{{scope}}" />
+</form>
