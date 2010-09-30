@@ -23,6 +23,6 @@ HOWEVER, for the time being, the primary goal of this project is to provide a fu
 
 That said, we welcome contributors to keep it up to date and add examples of all the base OAuth2 functionality. Feel free to submit issues or fork and send pull requests. Just be sure to add integration tests (which are currently still a work in progress).
 
-## Authors
+## Contributors
 
  * Jeff Lindsay <progrium@gmail.com>
