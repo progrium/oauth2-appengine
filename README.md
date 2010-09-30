@@ -26,3 +26,7 @@ That said, we welcome contributors to keep it up to date and add examples of all
 ## Contributors
 
  * Jeff Lindsay <progrium@gmail.com>
+
+## License
+
+MIT
