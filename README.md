@@ -21,6 +21,8 @@ We're hoping this project not only helps you learn OAuth2 for your own implement
 
 HOWEVER, for the time being, the primary goal of this project is to provide a full implementation of the latest OAuth2 spec, which is currently at draft 10, with about 3 more planned before it becomes finalized in early 2011. 
 
+That said, we welcome contributors to keep it up to date and add examples of all the base OAuth2 functionality. Feel free to submit issues or fork and send pull requests. Just be sure to add integration tests (which are currently still a work in progress).
+
 ## Authors
 
  * Jeff Lindsay <progrium@gmail.com>
