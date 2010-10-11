@@ -6,7 +6,10 @@ from django.utils import simplejson
 import urllib
 
 from oauth.models import OAuth_Authorization, OAuth_Token, OAuth_Client
-from oauth.utils import extract
+
+def extract(keys, d):
+    """ Extracts subset of a dict into new dict """
+    return dict((k, d[k]) for k in keys if k in d)
 
 class AuthorizationHandler(webapp.RequestHandler):
     SUPPORTED_RESPONSE_TYPES = [

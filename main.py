@@ -7,6 +7,7 @@ import urllib
 
 from oauth.handlers import AuthorizationHandler, AccessTokenHandler
 from oauth.models import OAuth_Client
+from oauth.utils import oauth_required
 
 # Notes:
 # Access tokens usually live shorter than access grant
@@ -19,8 +20,7 @@ class MainHandler(webapp.RequestHandler):
 
 class ClientsHandler(webapp.RequestHandler):
     """ This is only indirectly necessary since the spec
-        calls for clients, but managing them is out of scope 
-        """
+        calls for clients, but managing them is out of scope  """
     
     def get(self):
         clients = OAuth_Client.all()
@@ -34,14 +34,28 @@ class ClientsHandler(webapp.RequestHandler):
         client.put()
         self.redirect(self.request.path)
 
+class ProtectedResourceHandler(webapp.RequestHandler):
+    """ This is an example of a resource protected by OAuth 
+        and requires the 'read' scope """
+        
+    SECRET_PAYLOAD = 'bananabread'
+    
+    @oauth_required(scope='read')
+    def get(self, token):
+        self.response.headers['Content-Type'] = "application/json"
+        self.response.out.write(
+            simplejson.dumps({'is_protected': True, 'secret_payload': self.SECRET_PAYLOAD}))
 
-def main():
-    application = webapp.WSGIApplication([
+def application():
+    return webapp.WSGIApplication([
         ('/',                   MainHandler),
         ('/oauth/authorize',    AuthorizationHandler),
         ('/oauth/token',        AccessTokenHandler),
-        ('/app/clients',        ClientsHandler),    ],debug=True)
-    util.run_wsgi_app(application)
+        ('/protected/resource', ProtectedResourceHandler),
+        ('/admin/clients',      ClientsHandler),    ],debug=True)
+
+def main():
+    util.run_wsgi_app(application())
 
 if __name__ == '__main__':
     main()

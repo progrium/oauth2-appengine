@@ -1,5 +1,13 @@
 from google.appengine.ext import db
-from oauth.utils import random_str, now
+import time
+import hashlib
+import random
+
+def now():
+    return int(time.mktime(time.gmtime()))
+
+def random_str():
+    return hashlib.sha1(str(random.random())).hexdigest()
 
 class OAuth_Token(db.Model):
     EXPIRY_TIME = 3600*24
@@ -14,6 +22,10 @@ class OAuth_Token(db.Model):
     @classmethod
     def get_by_refresh_token(cls, refresh_token):
         return cls.all().filter('refresh_token =', refresh_token).get()
+    
+    @classmethod
+    def get_by_access_token(cls, access_token):
+        return cls.all().filter('access_token =', access_token).get()
     
     def put(self, can_refresh=True):
         if can_refresh:
