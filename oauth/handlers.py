@@ -117,7 +117,7 @@ class AccessTokenHandler(webapp.RequestHandler):
         'authorization_code', 
         'password',
         #'none', (will require not giving refresh token)  ... == client_credentials?
-        #'asssertion', (will require not giving refresh token)
+        #'assertion', (will require not giving refresh token)
         ]
     
     def render_error(self, code, description):
